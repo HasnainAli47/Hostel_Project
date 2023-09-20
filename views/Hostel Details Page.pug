@@ -1,0 +1,91 @@
+extends template 
+
+
+
+block head_tags
+    title Details Page
+    
+    link(rel="stylesheet", href="/css/Details_Page.css")
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css")
+block content
+    .sample-Pcard.container
+      .row
+        .col-lg-12.mb-5
+          .row.no-gutters.align-items-center
+            .col-lg-5.col-md-12.p-0.img-container
+              img.card-img(src=imageUrl || "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", alt="card-img", width="100%", height="100%", style="object-fit: cover")
+            .col-lg-7.col-md-12.p-0
+              .card.sample-Pcard
+                .card-body
+                  .row.justify-content-between.align-items-center
+                    .col-lg-6.col-md-6
+                      h5.card-title 
+                        | #{hostel.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                        if hostel && hostel.IsRegister
+                          small.text-mutes.text-success
+                            i.fa-solid.fa-check Registered
+                        else 
+                          small.text-mutes.text-danger
+                            i.fa-solid.fa-xmark Not Registered
+                      small.text-muted= hostel.address
+                      p.card-text= `${distance !== undefined ? `${distance}km away from you` : 'Wait for few seconds we are getting data ready for you. Refresh the page again'}`
+                    .col-lg-6.col-md-6.text-end
+                      //- button.btn.btn-danger.btn-sm.mb-2.mb-md-0(type="button") 10%
+                      //- if (user !== undefined && user.favoriteItems !== undefined && user.favoriteItems.includes(hostel._id))
+                      //-   a(href=`/addtofavorite/${hostel._id}`)
+                      //-     button.btn.btn-light.btn-sm.bg-success(type="button")
+                      //-       i.fa-solid.fa-heart
+                      //- else 
+                      //-   a(href=`/DeleteFav/${hostel._id}`)
+                      //-     button.btn.btn-light.btn-sm(type="button")
+                      //-       i.fa-regular.fa-heart
+                  hr
+                  .row.sample-padding-t10
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Contact Number
+                      p.card-title-caption= (hostel.contactNumber && hostel) ? hostel.contactNumber : 'Yet Not Registered'
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Email
+                      p.card-title-caption= (hostel.email && hostel) ? hostel.email : 'Yet Not Registered'
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Category
+                      p.card-title-caption= hostel.category
+                    
+                  .row.sample-padding-t10
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Rent Per Month (Per Person) 
+                      p.card-title-caption= hostel.Rent
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Mess Per Month (Per Person)
+                      p.card-title-caption= hostel.messRent
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Laundary
+                      p.card-title-caption= hostel.Laundary
+                    
+                  .row.sample-padding-t10
+                  
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Wi-Fi
+                      p.card-title-caption= hostel.wifi
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Kitchen
+                      p.card-title-caption= hostel.Kitchen
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Lockers
+                      p.card-title-caption= hostel.Lockers
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Parking
+                      p.card-title-caption= hostel.parking
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary AC/Heater
+                      p.card-title-caption= hostel.ACHeater
+                    .col-lg-4.col-md-4
+                      p.card-title-txt.text-primary Reviews
+                      p.card-title-caption= `${hostel.finalRating}/5`
+                        small.text-muted.text-info= ` Reviwed by ${hostel.totalReviews} people`
+                  .row
+                    .col-lg-6
+                      a.btn.btn-success.btn-block.quick-btn(type="button", href=`https://www.google.com/maps/search/?api=1&query=${hostel.lat},${hostel.lng}`) See on google maps
+
+    script(src="https://kit.fontawesome.com/4d548a4e76.js", crossorigin="anonymous")
+

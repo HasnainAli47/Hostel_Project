@@ -1,0 +1,52 @@
+extends template 
+
+block head_tags
+    title  Contact Us
+    link(rel="stylesheet", href="/css/Contact.css")
+
+block content
+
+
+    if messages.success
+              .flash-message(style="background-color: rgb(0, 255, 0, 0.5); padding: 10px; border-radius: 20px;min-width: 80px; text-align: center; margin: 20px;")
+                | #{messages.success}
+                script.
+                  setTimeout(() => {
+                    const flashMessage = document.querySelector('.flash-message');
+                    if (flashMessage) {
+                      flashMessage.style.display = 'none';
+                    }
+                  }, 5000);
+    .container
+      .content
+        .left-side
+          .address.details
+            i.fas.fa-map-marker-alt
+            .topic Address
+            .text-one Raiwand Road
+            .text-two Lahore
+          .phone.details
+            i.fa-brands.fa-whatsapp
+            .topic WhatsApp
+            .text-one +92 3135085477
+            //- .text-two +0000 0000 0000
+          .email.details
+            i.fas.fa-envelope
+            .topic Email
+            .text-one LuxuryStay@solution4u.com
+        .right-side
+          .topic-text Get in Touch
+          p We'd Love to Hear from You! Feel free to reach out with any questions, suggestions, or just to say hello. Your feedback matters to us, and we're here to make your experience exceptional!
+          form(action="/Contact", method="post", id="contact-form")
+            .input-box
+              input(type="text", name="name", placeholder="Enter your name", required)
+            .input-box
+              input(type="email", name="email",  placeholder="Enter your email", required)
+            .input-box
+              input(type="text", placeholder="Subject", name="subject", required)
+            .input-box.message-box
+              textarea(name="message", cols="300", rows="100", placeholder="Message", required)
+            .button#btn
+              input(type="submit", value="Send Now")
+    script(src="/js/contact.js") 
+    

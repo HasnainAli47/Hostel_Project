@@ -1,0 +1,31 @@
+extends template 
+
+
+
+block head_tags
+    title My Favorites List
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="/css/cards.css")
+
+block content
+    
+    .card-deck
+    .row.row-cols-lg-3.row-cols-md-2.row-cols-1
+      if favoriteItems
+        each fav in favoriteItems
+          .col.nearby-hostel
+            .card-deck
+              .card
+                img.card-img-top(src= fav.imageUrl || "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80", alt="Card image cap")
+                .card-body
+                  h5.card-title.text-primary= fav.name
+                    //- small.text-muted= ` (${hostel.category})` 
+                  p.card-text= fav.address 
+                  p.card-text.text-info= `Rating: ${fav.finalRating}/5` 
+                    small.text-muted.text-info= ` Reviwed by ${fav.totalReviews} people` 
+                  div.position-relative
+                    a.btn.btn-primary.btn-sm.position-absolute.end-0.bottom-0.m-3(href=`/DeleteFav/${fav._id}`) Remove
+                    a.btn.btn-primary.btn-sm(href=`/Search/Details/${fav.place_id}`) Details
+                //-   p.card-text.text-primary= `${hostel.distance} Km Away from your place`
+          

@@ -1,0 +1,85 @@
+extends template
+
+block head_tags
+  title Login
+  link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+  link(rel="stylesheet", type="text/css", href="/css/SignIn_fonts.css")
+  link(rel="stylesheet", type="text/css", href="/css/SignIn.css")
+
+block content
+  .limiter
+    .container-login100
+      .wrap-login100
+        .login100-pic.js-tilt(data-tilt)
+          img(src="/img/img-01.png", alt="IMG")
+
+        form.login100-form.validate-form(action="/Signin", method="post")
+          // Display error flash message (if it exists)
+          if messages.error
+            .flash-message
+              | #{messages.error}
+              script.
+                setTimeout(() => {
+                  const flashMessage = document.querySelector('.flash-message');
+                  if (flashMessage) {
+                    flashMessage.style.display = 'none';
+                  }
+                }, 5000);
+          else if messages.success
+            .flash-message.success
+              | #{messages.success}
+              script.
+                setTimeout(() => {
+                  const flashMessage = document.querySelector('.flash-message');
+                  if (flashMessage) {
+                    flashMessage.style.display = 'none';
+                  }
+                }, 5000);
+          span.login100-form-title Member Login
+
+
+          .wrap-input100.validate-input(data-validate="Valid email is required: ex@abc.xyz")
+            input.input100(type="text", name="email", placeholder="Email")
+            span.focus-input100
+            span.symbol-input100
+              i.fa.fa-envelope(aria-hidden="true")
+
+          .wrap-input100.validate-input(data-validate="Password is required")
+            input.input100(type="password", name="password", placeholder="Password")
+            span.focus-input100
+            span.symbol-input100
+              i.fa.fa-lock(aria-hidden="true")
+
+          .container-login100-form-btn
+            button.login100-form-btn(type="submit") Login
+
+          .text-center.p-t-12
+            a#forgotPasswordLink(href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal") Forgot Password?
+
+
+          .text-center.p-t-136
+            a.txt2(href="/SignUp")
+              | Create your Account
+              i.fa.fa-long-arrow-right.m-l-5(aria-hidden="true")
+        
+
+
+  .modal#forgotPasswordModal(tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true")
+    .modal-dialog.modal-dialog-centered
+        .modal-content
+            .modal-header.bg-primary
+                h5#forgotPasswordModalLabel.modal-title.text-white Forgot Password?
+                button(type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close")
+            form(action="/forget-password" method="POST") 
+                .modal-body
+                    p Please enter your email address to reset your password:
+                    input#forgotPasswordEmail.form-control(type="text", name="email", placeholder="Email") 
+                .modal-footer
+                    button#submitForgotPassword.btn.btn-primary(type="submit") Submit
+
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.0/tilt.jquery.min.js").
+  script.
+    $('.js-tilt').tilt({
+      scale: 1.1
+    })
+  script(src="/js/SignIn.js")

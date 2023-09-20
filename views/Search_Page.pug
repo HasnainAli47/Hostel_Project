@@ -1,0 +1,135 @@
+extends template
+
+block head_tags
+  title Search Places
+  link(href="/css/Search_Page.css", rel="stylesheet")
+  link(rel="stylesheet", href="/css/cards.css")
+
+block content
+  .container.fadeInBackground
+    h1
+        i.fa-solid.fa-map-location-dot
+        | Search Your Favorite Destination
+    .input-group
+        input#table_filter.form-control(aria-label="Text input with segmented button dropdown", placeholder="Input Your Favorite Destination")
+        .input-group-append
+            button#searchBtn.btn.btn-secondary.btn-search(type="button")
+                span.glyphicon.glyphicon-search &nbsp;
+                span.label-icon Search
+                i.fa-solid.fa-location-pin
+    #autocomplete-results
+
+
+
+
+
+          
+    include filters.pug
+  .card-deck
+    .row.row-cols-lg-3.row-cols-md-2.row-cols-1
+      if (nearbyHostels && nearbyHostels.length) || (nearbyRestaurants && nearbyRestaurants.length)
+        if nearbyHostels && nearbyHostels.length
+          each hostel in nearbyHostels
+            .col.nearby-hostel
+              .card-deck
+                .card
+                  img.card-img-top(src= hostel.imageUrl || "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80", alt="Card image cap")
+                  .card-body
+                    h5.card-title.text-primary= hostel.name
+                      small.text-muted= ` (${hostel.category})` 
+                    p.card-text= hostel.address 
+                    p.card-text.text-primary= `${hostel.distance} Km Away from your place`
+                    p.card-text.text-info.d-block= `Rating: ${hostel.finalRating}/5` 
+                      small.text-muted.text-info= ` Reviwed by ${hostel.totalReviews} people` 
+                    a.btn.btn-primary.btn-sm.position-absolute.end-0.m-3.d-block(href=`/Search/Details/${hostel.place_id}`) See more details
+        
+        if nearbyRestaurants && nearbyRestaurants.length
+          each restaurant in nearbyRestaurants
+            .col.nearby-restaurant
+              .card-deck
+                .card
+                  img.card-img-top(src= restaurant.imageUrl || "https://images.unsplash.com/photo-1538334421852-687c439c92f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", alt="Restaurant Image")
+                  .card-body
+                    h5.card-title.text-primary= restaurant.name
+                      small.text-muted= ` (${restaurant.category})` 
+                    p.card-text= restaurant.address 
+                    p.card-text.text-primary= `${restaurant.distance} Km Away from your place`
+                    p.card-text.text-info.d-block= `Rating: ${restaurant.finalRating}/5` 
+                      small.text-muted.text-info= ` Reviwed by ${restaurant.totalReviews} people` 
+                    a.btn.btn-primary.btn-sm.position-absolute.end-0.m-3.d-block(href=`/Search/Details/${restaurant.place_id}`) See more details
+      else 
+        .no-results-box
+          i.fas.fa-search-minus
+          h4 Oops! No Results Found
+          p Our search couldn't find anything matching your query. Feel free to try different keywords or explore other places.
+          .search-again-btn
+            a.btn.btn-primary(href="/Search") Search Again
+        
+    
+
+
+
+
+
+  
+
+
+  script(src="/js/Search.js") 
+  script(src="https://kit.fontawesome.com/4d548a4e76.js", crossorigin="anonymous")
+
+
+
+
+
+  //- - let hostelIndex = 0
+  //-   - let restaurantIndex = 0
+  //-   - var displayed = 0
+  //-   if(nearbyHostels || nearbyRestaurants)
+
+  //-     while (hostelIndex < nearbyHostels.length || restaurantIndex < nearbyRestaurants.length)
+  //-       - displayed++
+  //-       - const hostel = nearbyHostels[hostelIndex]
+  //-       - const restaurant = nearbyRestaurants[restaurantIndex]
+
+  //-       - let isHostelDisplayed = false
+  //-       - let isRestaurantDisplayed = false
+
+  //-       if (hostel && !isHostelDisplayed)
+  //-         - hostelIndex++
+  //-         - isHostelDisplayed = true
+  //-         .card.bg-dark-subtle.mt-4(data-place-id=hostel.place_id)
+  //-           img.card-img-top(src=hostel.imageUrl || "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80", alt="Hostel Image")
+  //-           .card-body
+  //-             .text-section
+  //-               h3.card-title= hostel.name
+  //-               h5.card-title= hostel.category
+  //-               p.card-text= hostel.address
+  //-               p.card-text= `Contact Number: ${hostel.contactNumber}`
+  //-               p.card-text= `Rating:  ${hostel.rating} /5`
+  //-               p.card-text= `Total Reviewed by  ${hostel.totalReviews} people`
+              
+  //-             .cta-section
+  //-               div.offer= `Distance: ${hostel.distance}km`
+  //-                 a.btn.fa-regular.fa-heart
+  //-               a.btn.btn-light(href=`/Search/Details/${hostel.place_id}`) See More Details
+
+  //-       if (restaurant && !isRestaurantDisplayed)
+  //-         - restaurantIndex++
+  //-         - isRestaurantDisplayed = true
+  //-         .card.bg-dark-subtle.mt-4(data-place-id=restaurant.place_id)
+  //-           img.card-img-top(src=restaurant.imageUrl || "https://images.unsplash.com/photo-1538334421852-687c439c92f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", alt="Restaurant Image")
+  //-           .card-body
+  //-             .text-section
+  //-               h3.card-title= restaurant.name
+  //-               h5.card-title= restaurant.category
+  //-               p.card-text= restaurant.address
+  //-               p.card-text= `Contact Number: ${restaurant.contactNumber}`
+  //-               p.card-text= `Rating:  ${restaurant.rating} /5`
+  //-               p.card-text= `Total Reviewed by  ${restaurant.totalReviews} people`
+              
+  //-             .cta-section
+  //-               div.offer= `Distance: ${restaurant.distance}km`
+  //-                 a.btn.fa-regular.fa-heart
+  //-               a.btn.btn-light(href="/Search/Details") See More Details
+        
+  
