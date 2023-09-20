@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+head
+    link(rel="stylesheet", href="/css/Landing_Page.css")
+    .carousel.carousel-dark.slide#carouselExampleDark.position-relative(data-bs-ride="carousel")
+        .carousel-indicators
+            button(type="button", data-bs-target="#carouselExampleDark", data-bs-slide-to="0", class="active", aria-current="true", aria-label="Slide 1")
+            button(type="button", data-bs-target="#carouselExampleDark", data-bs-slide-to="1", aria-label="Slide 2")
+            button(type="button", data-bs-target="#carouselExampleDark", data-bs-slide-to="2", aria-label="Slide 3")
+        .carousel-inner
+            .carousel-item.active(data-bs-interval="50000")
+                img.d-block.w-100.fixed-height(src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80", alt="...")
+                .carousel-caption.d-none.d-md-block
+                    h5.centered Comfort on a Budget
+                    p.centered Find affordable and cozy hostels for a memorable stay
+            .carousel-item(data-bs-interval="50000")
+                img.d-block.w-100.fixed-height(src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", alt="...")
+                .carousel-caption.d-none.d-md-block
+                    h5.centered Quick Cravings
+                    p.centered Satisfy your cravings with mouthwatering fast food
+            .carousel-item(data-bs-interval="10000")
+                img.d-block.w-100.fixed-height(src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", alt="...")
+                .carousel-caption.d-none.d-md-block
+                    h5.centered Sensational Taste
+                    p.centered Discover exquisite dining experiences near you
+    script(src="/js/Landing_Page.js")
+        //- button.carousel-control-prev(type="button", data-bs-target="#carouselExampleDark", data-bs-slide="prev")
+        //-     span.carousel-control-prev-icon(aria-hidden="true")
+        //-     span.visually-hidden Previous
+        //- button.carousel-control-next(type="button", data-bs-target="#carouselExampleDark", data-bs-slide="next")
+        //-     span.carousel-control-next-icon(aria-hidden="true")
+        //-     span.visually-hidden Next

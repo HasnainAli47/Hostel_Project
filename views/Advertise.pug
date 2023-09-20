@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+head
+      link(rel="stylesheet", href="/css/Advertise.css")
+body 
+    div.custom-container
+        .row
+            .col-lg-6.col-md-12.col-sm-12
+                div.custom-card
+                    div.custom-card__image-container
+                        img.custom-card__image(src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2126&q=80" alt="Restaurant Room")
+                    svg.custom-card__svg(viewBox="0 0 800 500")
+                        path(d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333")
+                        path.custom-card__line(d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent")
+                    div.custom-card__content
+                        h1.custom-card__title Why Register With Us?
+                        ul
+                            li Featured in suggestions within 10km radius.
+                            li Enhance your property's visibility.
+                            li Enjoy free advertising opportunities.
+                            li Unlock new business prospects.
+                            li Expand your reach to a wider audience.
+                            li Prioritized suggestions in nearby searches.
+                        a(href="#registerPropertyModal", data-bs-toggle="modal")    
+                        button.custom-button Register Your Property
+            .col-lg-6.col-md-12.col-sm-12
+                div.custom-card
+                    div.custom-card__image-container
+                        img.custom-card__image(src="https://images.unsplash.com/photo-1600077625345-f401f4ba2fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Hostel Buildings")
+                    svg.custom-card__svg(viewBox="0 0 800 500")
+                        path(d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400 L 800 500 L 0 500" stroke="transparent" fill="#333")
+                        path.custom-card__line(d="M 0 100 Q 50 200 100 250 Q 250 400 350 300 C 400 250 550 150 650 300 Q 750 450 800 400" stroke="pink" stroke-width="3" fill="transparent")
+                    div.custom-card__content
+                        h1.custom-card__title Why Choose Us?
+                        ul
+                            li Rich Visuals.
+                            li Save Time and Effort.
+                            li Ratings, dining times, WiFi, images, address, distance from your place and much more All-in-One place.
+                            li Easy, intuitive design.
+                            li Exclusive offers like discounts.
+                            li Personalized Recommendations based on your preferences.
+                    a(href="/Search")
+                        button.custom-button Click To Explore
+            .modal#registerPropertyModal(tabindex="-1" role="dialog")
+              .modal-dialog(role="document")
+                .modal-content
+                  .modal-header.bg-primary.text-white
+                    h5.modal-title.mb-0 Which Property you own?
+                    button.close(type="button", data-bs-dismiss="modal", aria-label="Close")
+                      span(aria-hidden="true") ×
+                  .modal-body
+                    p.mb-3 Please register the property you own, Else legal action can take place if you register someone else property <br> براہ کرم اپنی ملکیت کی جائیداد کو رجسٹر کروائیں، بصورت دیگر قانونی کارروائی ہو سکتی ہے اگر آپ کسی اور کی جائیداد کو رجسٹر کرتے ہیں۔
+                    a.btn.btn-outline-primary.btn-lg.btn-block.mb-2(href="/HostelRegister") Hostel
+                    a.btn.btn-outline-secondary.btn-lg.btn-block.mb-2(href="/RestaurantRegister") Restaurant
+                  .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Close

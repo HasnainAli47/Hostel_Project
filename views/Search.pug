@@ -1,0 +1,24 @@
+doctype html
+doctype html
+html(lang="en")
+  head
+    link(rel="stylesheet", href="/css/search.css")
+  body
+    .search-bar
+      h1.search-title Discover Your Perfect Destination
+      .input-box
+        i.uil.uil-search
+        input(type="text", id="table_filter", placeholder="Search here...")
+        button.button#searchBtn Search
+      .container
+        .selector.d-flex.flex-wrap.justify-content-center.align-items-center
+            div.selector-item.col-lg-4.col-md-6.col-sm-12
+                input(type='radio', id='radio1', name='selector', class='selector-item_radio', checked)
+                label(for='radio1', class='selector-item_label') Hostel
+                
+            div.selector-item.col-lg-4.col-md-6.col-sm-12
+                input(type='radio', id='radio2', name='selector', class='selector-item_radio')
+                label(for='radio2', class='selector-item_label') Restaurant
+      #autocomplete-results
+                // Add sub-options for Hotels
+  script(src="/js/Search.js")

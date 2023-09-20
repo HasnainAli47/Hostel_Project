@@ -1,0 +1,161 @@
+extends template
+
+block head_tags
+  title Login
+  link(rel="stylesheet", type="text/css", href="/css/HostelRegister.css")
+
+block content
+    .modernForm
+        .imageSection
+            .image
+                .overlay
+                img(src="https://images.unsplash.com/photo-1579103709853-941467805d52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80", alt="pexels-yuri-manei-2272854")
+            .textInside
+                h1 Grow with Us
+                p.tagLine Advertise Your Hotel
+            .service
+                p
+                    span.price $0.00 / Month
+        .contactForm
+            h1 Hotel Registration Form
+            form(action="/HotelRegister", method="post")
+                .name
+                    label(for="searchHostel") Search Your Hotel:
+                    input(type="text", name="searchHostel", id="searchHostel", placeholder="Enter hostel name")
+                    .iconName
+                        i.fa-solid.fa-search
+                .name
+                    label(for="hostelName") Your Hotel Name:
+                    input(type="text", name="hostelName", id="hostelName",disabled, value= (hostel && hostel.name) ? hostel.name : '')
+                    input(type="hidden", name="actualHostelName", id="actualHostelName", value= (hostel && hostel.name) ? hostel.name : '')
+                    input(type="hidden", name="place_id", id="placeid", value= (hostel && hostel.place_id) ? hostel.place_id : '')
+                    input(type="hidden", name="lat", id="placelat", value= (hostel && hostel.lat) ? hostel.lng : '')
+                    input(type="hidden", name="lng", id="placelng", value= (hostel && hostel.lng) ? hostel.lat : '')
+                    input(type="hidden", name="rating", id="rating", value= (hostel && hostel.rating) ? hostel.rating : '')
+                    input(type="hidden", name="TotalRating", id="TotalRating", value= (hostel && hostel.user_ratings_total) ? hostel.user_ratings_total : '')
+                    
+                    .iconName
+                        i.fa-solid.fa-building
+                .name
+                    label(for="address") Address:
+                    input(type="text", name="address", id="Adress", disabled, value= (hostel && hostel.address) ? hostel.address : '')
+                    input(type="hidden", name="actualAddress", id="actualAddress", value= (hostel && hostel.address) ? hostel.address : '')
+                    .iconName
+                        i.fa-solid.fa-building
+
+                .name
+                    label(for="hostelName") Contact Number:
+                    input(type="text", name="Contact", id="Contact No", placeholder="Enter your hostel name", value= (hostel && hostel.contactNumber) ? hostel.contactNumber : '')
+                    .iconName
+                        i.fa-solid.fa-phone
+                .name
+                    label(for="email") Email:
+                    input(type="email", name="email", id="email", placeholder="Enter email", value= (hostel && hostel.email) ? hostel.email : '')
+                    .iconName
+                        i.fa-solid.fa-envelope
+                .name
+                    label(for="hostelImage") Upload Your Hotel Image:
+                    input(type="file", name="hostelImage", id="hostelImage", accept="image/*")
+                    .iconName
+                        i.fa-solid.fa-image
+                .name
+                    label(for="StayDropdown") Do You offer Stay?
+                    select(name="StayDropdown", id="StayDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.Stay == 'Available')) Yes
+                        option(value="no", selected=(hostel && hostel.Stay == 'Not Available')) No
+                //.name
+                    label(for="messMenuImage") Upload Mess Menu Image:
+                    input(type="file", name="messMenuImage", id="messMenuImage", accept="image/*")
+                    .iconName
+                        i.fa-solid.fa-image
+                .name
+                    label(for="laundryDropdown") Offer Laundry Service?
+                    select(name="laundryDropdown", id="laundryDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.Laundary == 'yes')) Yes
+                        option(value="no", selected=(hostel && hostel.Laundary == 'no')) No
+                .name
+                    label(for="acHeaterDropdown") AC/Heater Availability:
+                    select(name="acHeaterDropdown", id="acHeaterDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="available", selected=(hostel && hostel.ACHeater == 'available')) Available
+                        option(value="unavailable", selected=(hostel && hostel.ACHeater == 'unavailable')) Unavailable
+                        option(value="ondemand", selected=(hostel && hostel.ACHeater == 'ondemand')) On Demand
+                    .iconName
+                        i.fa-solid.fa-thermometer-half
+                .name
+                    label(for="parkingDropdown") Parking Availability:
+                    select(name="parkingDropdown", id="parkingDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.parking == 'Available')) Available
+                        option(value="no", selected=(hostel && hostel.parking == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-parking
+                .name
+                    label(for="meetingDropdown") Buisness Meeting Facility:
+                    select(name="meetingDropdown", id="meetingDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.meetingRoom == 'Available')) Available
+                        option(value="no", selected=(hostel && hostel.meetingRoom == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-parking
+                .name 
+                    label(for="swimmingpoolDropdown") SwimmingPool Availabilty:
+                    select(name="swimmingpoolDropdown", id="swimmingpoolDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.swimmingPool == 'Available')) Available
+                        option(value="no", selected=(hostel && hostel.swimmingPool == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-parking
+                .name
+                    label(for="wifiDropdown") Wi-Fi Availability:
+                    select(name="wifiDropdown", id="wifiDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.wifi == 'Available')) Available
+                        option(value="no", selected=(hostel && hostel.wifi == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-wifi
+                .name
+                    label(for="restaurantDropdown") Restaurant Availability:
+                    select(name="restaurantDropdown", id="restaurantDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.Restaurant == 'Available')) Available
+                        option(value="no", selected=(hostel && hostel.Restaurant == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-wifi
+                .name
+                    label(for="gymDropdown") Gym Availability:
+                    select(name="gymDropdown", id="gymDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(hostel && hostel.Gym == 'Available')) Available
+                        option(value="no", selected=(hostel && hostel.Gym == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-wifi
+                .name
+                    label(for="diningDropdown") Dining Availability:
+                    select(name="diningDropdown", id="diningDropdown")
+                        option(value="" selected disabled) Select an option
+                        option(value="available", selected=(restaurant && restaurant.Dining == 'available')) Available
+                        option(value="unavailable", selected=(restaurant && restaurant.Dining == 'unavailable')) Unavailable
+                        option(value="breakfast", selected=(restaurant && restaurant.Dining == 'breakfast')) Breakfast Only
+                        option(value="lunch", selected=(restaurant && restaurant.Dining == 'lunch')) Lunch Only
+                        option(value="dinner", selected=(restaurant && restaurant.Dining == 'dinner')) Dinner Only
+                        option(value="breakfast_lunch", selected=(restaurant && restaurant.Dining == 'breakfast_lunch')) Breakfast and Lunch
+                        option(value="breakfast_dinner", selected=(restaurant && restaurant.Dining == 'breakfast_dinner')) Breakfast and Dinner
+                        option(value="lunch_dinner", selected=(restaurant && restaurant.Dining == 'lunch_dinner')) Lunch and Dinner
+                        option(value="all_meals", selected=(restaurant && restaurant.Dining == 'all_meals')) All Meals
+                    .iconName 
+                        i.fa-solid.fa-utensils
+                .checkbox
+                    input(type="checkbox", id="checkbox", name="checkbox", required)
+                    label(for="checkbox")
+                        | By signing up, you agree to the
+                        p
+                            a(href="#") Play Term of Service
+                a.btn.btn-primary.mt-4(href="/deleteHotel") Delete Hostel
+                input(type="submit", value="Register")
+    script(defer async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0MMmFBogaItuG5ueOEdbVN8KJuGBIdJ8&libraries=places")
+    script(src="/js/HostelRegister.js") 
+
+

@@ -1,0 +1,86 @@
+doctype html
+html
+  head
+    title Your Page Title
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/NavBar.css")
+
+    link(rel="icon", type="image/png", sizes="192x192", href="/android-chrome-192x192.png")
+    link(rel="icon", type="image/png", sizes="512x512", href="/android-chrome-512x512.png")
+    link(rel="apple-touch-icon", href="/apple-touch-icon.png")
+    link(rel="icon", type="image/png", sizes="32x32", href="/favicon-32x32.png")
+    link(rel="icon", type="image/png", sizes="16x16", href="/favicon-16x16.png")
+    link(rel="icon", type="image/png", href="/favicon.png")   
+
+
+    
+
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container-fluid
+        a.navbar-brand(href="/") Luxury Stay
+        button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarNav
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link(href="/")
+                i.fas.fa-home 
+                | Home
+            li.nav-item
+              a.nav-link(href="/Search")
+                i.fa-solid.fa-magnifying-glass-plus
+                | Search
+            li.nav-item
+              a.nav-link(href="/Contact")
+                i.fa-solid.fa-message
+                | Contact Us
+          ul.navbar-nav.navbar-right 
+            if isLoggedIn || user !== undefined
+              a.nav-link(href="/SignOut")
+                i.fas.fa-sign-out-alt
+                | SignOut
+            else
+              li.nav-item
+                a.nav-link(href="/SignIn")
+                  i.fas.fa-sign-in-alt 
+                  | SignIn
+              li.nav-item
+                a.nav-link(href="/SignUp")
+                  i.fas.fa-user-plus 
+                  | SignUp
+            if user !== undefined
+              if user.isAdmin
+                li.nav-item
+                  a.nav-link(href="/ManageProperty")
+                    i.fa-solid.fa-cog
+                    | Manage Property
+              else
+                li.nav-item
+                  a.nav-link(href="#registerPropertyModal", data-bs-toggle="modal")
+                    i.fa-solid.fa-circle-question 
+                    | Register Your Property
+            else
+              li.nav-item
+                    a.nav-link(href="#registerPropertyModal", data-bs-toggle="modal")
+                      i.fa-solid.fa-circle-question 
+                      | Register Your Property
+            
+            .modal#registerPropertyModal(tabindex="-1" role="dialog")
+              .modal-dialog(role="document")
+                .modal-content
+                  .modal-header.bg-primary.text-white
+                    h5.modal-title.mb-0 Which Property you own?
+                    button.close(type="button", data-bs-dismiss="modal", aria-label="Close")
+                      span(aria-hidden="true") ×
+                  .modal-body
+                    p.mb-3 Please register the property you own, Else legal action can take place if you register someone else property <br> براہ کرم اپنی ملکیت کی جائیداد کو رجسٹر کروائیں، بصورت دیگر قانونی کارروائی ہو سکتی ہے اگر آپ کسی اور کی جائیداد کو رجسٹر کرتے ہیں۔
+                    a.btn.btn-outline-primary.btn-lg.btn-block.mb-2(href="/HostelRegister") Hostel
+                    a.btn.btn-outline-secondary.btn-lg.btn-block.mb-2(href="/RestaurantRegister") Restaurant
+                  .modal-footer
+                    button.btn.btn-secondary(type="button", data-bs-dismiss="modal") Close
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js") 
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")
+    script(src="/js/Navbar.js") 
+

@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Main Page
+
+    link(rel="icon", type="image/png", sizes="192x192", href="/android-chrome-192x192.png")
+    link(rel="icon", type="image/png", sizes="512x512", href="/android-chrome-512x512.png")
+    link(rel="apple-touch-icon", href="/apple-touch-icon.png")
+    link(rel="icon", type="image/png", sizes="32x32", href="/favicon-32x32.png")
+    link(rel="icon", type="image/png", sizes="16x16", href="/favicon-16x16.png")
+    link(rel="icon", type="image/png", href="/favicon.png")    
+    
+    link(href='https://fonts.googleapis.com/css?family=Arbutus Slab', rel='stylesheet')
+    link(rel="stylesheet", href="/css/Landing_Page.css")
+body
+    include NavBar.pug
+
+    if messages.success
+            .flash-message(style="background-color: rgb(0, 255, 0, 0.5); padding: 10px; border-radius: 20px;min-width: 80px; text-align: center; margin: 20px;")
+              | #{messages.success}
+              script.
+                setTimeout(() => {
+                  const flashMessage = document.querySelector('.flash-message');
+                  if (flashMessage) {
+                    flashMessage.style.display = 'none';
+                  }
+                }, 5000);
+    if messages.error
+            .flash-message(style="background-color: rgb(255, 0, 0, 0.5); padding: 10px; border-radius: 20px;min-width: 80px; text-align: center; margin: 20px;")
+              | #{messages.error}
+              script.
+                setTimeout(() => {
+                  const flashMessage = document.querySelector('.flash-message');
+                  if (flashMessage) {
+                    flashMessage.style.display = 'none';
+                  }
+                }, 5000);
+
+    include Landing_Page.pug
+    include Search.pug
+    //- include NearBy_Places.pug
+    include Advertise.pug
+    include footer.pug
+    script(src="https://kit.fontawesome.com/4d548a4e76.js", crossorigin="anonymous")
+    //- script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")
+    //- script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js")

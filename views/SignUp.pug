@@ -1,0 +1,44 @@
+extends template 
+
+block head_tags
+    title Signup
+    link(rel="stylesheet", href="/css/SignUp.css")
+
+block content
+    .wrapper
+      .inner
+        .image-holder
+          img(src="/img/registration-form-3.jpg", alt="Display Picture")
+        form(action="/SignUp", method="post")
+          if messages.error
+            .flash-message
+              | #{messages.error}
+              script.
+                setTimeout(() => {
+                  const flashMessage = document.querySelector('.flash-message');
+                  if (flashMessage) {
+                    flashMessage.style.display = 'none';
+                  }
+                }, 5000);
+          
+          h3 Sign Up
+          .form-holder.active
+            input(type="text", placeholder="name", class="form-control", name="name", required)
+          .form-holder
+            input(type="text", placeholder="e-mail", class="form-control", name="email", required)
+          .form-holder
+            input(type="password", name="password", placeholder="Password", class="form-control", required, style="font-size: 15px;")
+          .form-holder
+            input(type="password", name="confirmpassword" placeholder="Confirm Your Password", class="form-control", style="font-size: 15px;")
+          .form-holder
+              input(type="checkbox", id="showPassword")
+              span Show Password
+          .form-login
+            button(type="submit", id="signupButton") Sign up
+            p
+              | Already Have account?
+              a(href="/SignIn") Login
+
+    script(src="/js/SignUp.js")
+
+

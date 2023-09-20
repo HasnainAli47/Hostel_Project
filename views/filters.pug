@@ -1,0 +1,43 @@
+html
+head
+    title filters 
+    link(rel="stylesheet", href="/css/filters.css")
+
+
+body
+    .containe
+        h2 Filter Your Search
+
+        .expanel
+        #filter-help.visually-hidden(tabindex="-1") Selecting a filter will update page content
+        .content
+            fieldset
+                legend.visually-hidden Filter by Category
+                ol
+                    li
+                        input(type="checkbox", value="Filter1", id="Filter1", class="has-sub-filter", aria-describedby="filter-help")
+                        label(for="Filter1") Hostels
+                        //fieldset.sub-filter.hidden
+                            legend.visually-hidden Filter in Hostels
+                            ol
+                                li
+                                    input(type="checkbox", value="Filter1", id="sub-Filter1")
+                                    label(for="sub-Filter1") Boys Hostels
+                                li
+                                    input(type="checkbox", value="Filter1", id="sub-Filter2")
+                                    label(for="sub-Filter2") Girls Hostels
+                    li
+                        input(type="checkbox", value="Filter1", id="Filter2", class="has-sub-filter")
+                        label(for="Filter2") Resturants
+                        //fieldset.sub-filter.hidden
+                            legend.visually-hidden Filter in Resturants
+                            ol
+                                li
+                                    input(type="checkbox", value="Filter1", id="sub-Filter5")
+                                    label(for="sub-Filter5") Fast Food
+                                li
+                                    input(type="checkbox", value="Filter1", id="sub-Filter6")
+                                    label(for="sub-Filter6") Other Restaurants
+                    //li
+                        input(type="checkbox", value="Filter1", id="Filter3")
+                        label(for="Filter3") Hotels

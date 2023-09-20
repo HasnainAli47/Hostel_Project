@@ -1,0 +1,159 @@
+extends template
+
+block head_tags
+  title Login
+  link(rel="stylesheet", type="text/css", href="/css/HostelRegister.css")
+
+block content
+    .modernForm
+        .imageSection
+            .image
+                .overlay
+                img(src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80", alt="pexels-yuri-manei-2272854")
+            .textInside
+                h1 Grow with Us
+                p.tagLine Advertise Your Restaurant
+            .service
+                p
+                    span.price $0.00 / Month
+        .contactForm
+            h1 Restaurant Registration Form
+            form(action="/RestaurantRegister", method="post", enctype="multipart/form-data",  id="registrationForm")
+                .name
+                    label(for="searchHostel") Search Your Hostel:
+                    input(type="text", name="searchHostel", id="searchPlace", placeholder="Enter Restaurant name")
+                    .iconName
+                        i.fa-solid.fa-search
+                .name
+                    label(for="hostelName") Your Restaurant Name:
+                    input(type="text", name="hostelName", id="hostelName",disabled, value= (restaurant && restaurant.name) ? restaurant.name : '')
+                    input(type="hidden", name="actualHostelName", id="actualHostelName", value= (restaurant && restaurant.name) ? restaurant.name : '')
+                    input(type="hidden", name="place_id", id="placeid", value= (restaurant && restaurant.place_id) ? restaurant.place_id : '')
+                    input(type="hidden", name="lat", id="placelat", value= (restaurant && restaurant.lat) ? restaurant.lng : '')
+                    input(type="hidden", name="lng", id="placelng", value= (restaurant && restaurant.lng) ? restaurant.lat : '')
+                    input(type="hidden", name="rating", id="rating", value= (restaurant && restaurant.rating) ? restaurant.rating : '')
+                    input(type="hidden", name="TotalRating", id="TotalRating", value= (restaurant && restaurant.user_ratings_total) ? restaurant.user_ratings_total : '')
+                    
+                    .iconName
+                        i.fa-solid.fa-building
+                .name
+                    label(for="address") Address:
+                    input(type="text", name="address", id="Adress", disabled, value= (restaurant && restaurant.address) ? restaurant.address : '')
+                    input(type="hidden", name="actualAddress", id="actualAddress", value= (restaurant && restaurant.address) ? restaurant.address : '')
+                    .iconName
+                        i.fa-solid.fa-building
+                .name
+                    label(for="email") Email:
+                    input(type="email", name="email", id="email",required, placeholder="Enter your email", value= (restaurant && restaurant.email) ? restaurant.email : '')
+                    .iconName
+                        i.fa-solid.fa-envelope
+                .name
+                    label(for="hostelName") Contact Number:
+                    input(type="text", name="Contact", id="Contact No",required, placeholder="Enter your contact no", value= (restaurant && restaurant.contactNumber) ? restaurant.contactNumber : '')
+                    .iconName
+                        i.fa-solid.fa-phone
+                .name
+                    label(for="hostelImage") Upload Your Menu Image:
+                    input(type="file", name="hostelImage", id="hostelImage", accept="image/*")
+                    .iconName
+                        i.fa-solid.fa-image
+                .name
+                    label(for="familyDropdown") Family Hall Available?
+                    select(name="familyDropdown", id="familyDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.familyHall == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.familyHall == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-people-group
+                //.name
+                    label(for="messMenuImage") Upload Mess Menu Image:
+                    input(type="file", name="messMenuImage", id="messMenuImage", accept="image/*")
+                    .iconName
+                        i.fa-solid.fa-image
+                .name
+                    label(for="fastfoodDropdown") Fast Food Available?
+                    select(name="fastfoodDropdown", id="fastfoodDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.fastfood == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.fastfood == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-pizza-slice
+                .name
+                    label(for="wifiDropdown") Wi-Fi Availability:
+                    select(name="wifiDropdown", id="wifiDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.wifi == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.wifi == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-wifi
+
+                .name
+                    label(for="parkingDropdown") Parking Availability:
+                    select(name="parkingDropdown", id="parkingDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.parking == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.parking == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-parking
+
+                .name
+                    label(for="beverages") Beverages Availability:
+                    select(name="beveragesDropdown", id="beveragesDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.beverages == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.beverages == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-martini-glass
+
+                .name
+                    label(for="privatePartiesDropdown") Private Parties Availability:
+                    select(name="privatePartiesDropdown", id="privatePartiesDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.PrivateParties == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.PrivateParties == 'Not Available')) Unavailable
+                    .iconName 
+                        i.fa-solid.fa-gift
+                .name
+                    label(for="outdoorSeatingDropdown") Out Door Seating Availability:
+                    select(name="outdoorSeatingDropdown", id="outdoorSeatingDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="yes", selected=(restaurant && restaurant.outdoorSeating == 'Available')) Available
+                        option(value="no", selected=(restaurant && restaurant.outdoorSeating == 'Not Available')) Unavailable
+                    .iconName
+                        i.fa-solid.fa-chair
+                .name
+                    label(for="acHeaterDropdown") AC/Heater Availability:
+                    select(name="acHeaterDropdown", id="acHeaterDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="available", selected=(restaurant && restaurant.ACHeater == 'available')) Available
+                        option(value="unavailable", selected=(restaurant && restaurant.ACHeater == 'unavailable')) Unavailable
+                        option(value="ondemand", selected=(restaurant && restaurant.ACHeater == 'ondemand')) On Demand
+                    .iconName
+                        i.fa-solid.fa-temperature-arrow-up
+                .name
+                    label(for="diningDropdown") Dining Availability:
+                    select(name="diningDropdown", id="diningDropdown",required)
+                        option(value="" selected disabled) Select an option
+                        option(value="available", selected=(restaurant && restaurant.Dining == 'available')) Available
+                        option(value="unavailable", selected=(restaurant && restaurant.Dining == 'unavailable')) Unavailable
+                        option(value="breakfast", selected=(restaurant && restaurant.Dining == 'breakfast')) Breakfast Only
+                        option(value="lunch", selected=(restaurant && restaurant.Dining == 'lunch')) Lunch Only
+                        option(value="dinner", selected=(restaurant && restaurant.Dining == 'dinner')) Dinner Only
+                        option(value="breakfast_lunch", selected=(restaurant && restaurant.Dining == 'breakfast_lunch')) Breakfast and Lunch
+                        option(value="breakfast_dinner", selected=(restaurant && restaurant.Dining == 'breakfast_dinner')) Breakfast and Dinner
+                        option(value="lunch_dinner", selected=(restaurant && restaurant.Dining == 'lunch_dinner')) Lunch and Dinner
+                        option(value="all_meals", selected=(restaurant && restaurant.Dining == 'all_meals')) All Meals
+                    .iconName 
+                        i.fa-solid.fa-utensils
+            
+                .checkbox
+                    input(type="checkbox", id="checkbox", name="checkbox", required)
+                    label(for="checkbox")
+                        | By signing up, you agree to the
+                        p
+                            a(href="#") Play Term of Service
+                a.btn.btn-primary.mt-4(href="/deleteRestaurant") Delete Restaurant
+                input(type="submit", value="Register")
+    script(src="/js/HostelRegister.js") 
+
+
